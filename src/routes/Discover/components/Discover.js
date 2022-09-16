@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DiscoverBlock from './DiscoverBlock/components/DiscoverBlock';
 import '../styles/_discover.scss';
+import SpotifyService from "../../../common/services/SpotifyService";
 
 export default class Discover extends Component {
   constructor() {
@@ -11,6 +12,14 @@ export default class Discover extends Component {
       playlists: [],
       categories: []
     };
+  }
+
+  componentDidMount() {
+    SpotifyService.fetchNewReleases().then(newReleases => {
+      this.setState({
+        newReleases: newReleases
+      });
+    });
   }
 
   render() {
