@@ -14,13 +14,30 @@ export default class SpotifyService {
 		return data.access_token;
 	};
 
-	static fetchNewReleases = async () => {
-		const token = await SpotifyService.getToken();
+	static fetchNewReleases = async token => {
 		const {data} = await axios.get(config.api.baseUrl + '/browse/new-releases', {
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
 		})
 		return data.albums.items
+	};
+
+	static fetchFeaturedPlaylists = async token => {
+		const {data} = await axios.get(config.api.baseUrl + '/browse/featured-playlists', {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		})
+		return data.playlists.items
+	};
+
+	static fetchCategories = async token => {
+		const {data} = await axios.get(config.api.baseUrl + '/browse/categories', {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		})
+		return data.categories.items
 	};
 }

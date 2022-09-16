@@ -15,9 +15,21 @@ export default class Discover extends Component {
   }
 
   componentDidMount() {
-    SpotifyService.fetchNewReleases().then(newReleases => {
-      this.setState({
-        newReleases: newReleases
+    SpotifyService.getToken().then(token => {
+      SpotifyService.fetchNewReleases(token).then(newReleases => {
+        this.setState({
+          newReleases: newReleases
+        });
+      });
+      SpotifyService.fetchFeaturedPlaylists(token).then(playlists => {
+        this.setState({
+          playlists: playlists
+        });
+      });
+      SpotifyService.fetchCategories(token).then(categories => {
+        this.setState({
+          categories: categories
+        });
       });
     });
   }
