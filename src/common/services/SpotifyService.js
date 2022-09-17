@@ -10,7 +10,7 @@ export default class SpotifyService {
 				'Authorization': 'Basic ' + basicToken,
 				'Content-type': 'application/x-www-form-urlencoded'
 			}
-		})
+		});
 		return data.access_token;
 	};
 
@@ -19,7 +19,7 @@ export default class SpotifyService {
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
-		})
+		});
 		return data.albums.items
 	};
 
@@ -28,8 +28,8 @@ export default class SpotifyService {
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
-		})
-		return data.playlists.items
+		});
+		return data.playlists.items;
 	};
 
 	static fetchCategories = async token => {
@@ -37,7 +37,7 @@ export default class SpotifyService {
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
-		})
-		return data.categories.items
+		});
+		return data.categories.items;
 	};
 }
